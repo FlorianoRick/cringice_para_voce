@@ -128,7 +128,7 @@ HTML = """
            ========================================= */
 
         h1 {
-            color: #333;
+            color: #FFD700;
             margin-top: 0;
         }
 
@@ -236,7 +236,7 @@ HTML = """
 
             <h1>Clica Ai</h1>
 
-            <p></p>
+            <p>o quase homen que fez com seu estagiario</p>
 
             <button onclick="mostrarFrase()">
                 Aqui
