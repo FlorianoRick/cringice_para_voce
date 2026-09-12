@@ -69,7 +69,58 @@ HTML = """
             text-align: center;
 
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+            /* IMPORTANTE:
+               permite que o GIF fique preso
+               dentro da caixa */
+            position: relative;
+
+            overflow: hidden;
         }
+
+
+        /* =========================================
+           GIF DE FUNDO
+           ========================================= */
+
+        #gifFundo {
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            z-index: 0;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition: opacity 1s ease;
+        }
+
+
+        /* GIF aparecendo */
+
+        #gifFundo.mostrar {
+            opacity: 1;
+        }
+
+
+        /* =========================================
+           CONTEÚDO DA CAIXA
+           ========================================= */
+
+        .conteudo {
+            position: relative;
+
+            z-index: 2;
+        }
+
 
 
         /* =========================================
@@ -131,12 +182,13 @@ HTML = """
 
 
         /* =========================================
-           ANIMAÇÃO
+           ANIMAÇÃO DA FRASE
            ========================================= */
 
         #frase.mostrar {
             animation: revelar 1.5s ease forwards;
         }
+
 
         @keyframes revelar {
 
@@ -156,6 +208,7 @@ HTML = """
             }
 
         }
+
     </style>
 </head>
 
@@ -164,16 +217,35 @@ HTML = """
 
     <div class="caixa">
 
-        <h1>Clica Ai</h1>
+        <!-- =====================================
+             GIF DE FUNDO
+             ===================================== -->
 
-        <p></p>
+        <img
+            id="gifFundo"
+            src="/static/flower.gif"
+            alt=""
+        >
 
-        <button onclick="mostrarFrase()">
-            Aqui
-        </button>
 
-        <div id="frase">
-             Voce é perfeita<3
+        <!-- =====================================
+             CONTEÚDO
+             ===================================== -->
+
+        <div class="conteudo">
+
+            <h1>Clica Ai</h1>
+
+            <p></p>
+
+            <button onclick="mostrarFrase()">
+                Aqui
+            </button>
+
+            <div id="frase">
+                Voce é perfeita &lt;3
+            </div>
+
         </div>
 
     </div>
@@ -181,17 +253,74 @@ HTML = """
 
     <script>
 
+        let tempoGif;
+
+
         function mostrarFrase() {
 
             const frase = document.getElementById("frase");
+            const gif = document.getElementById("gifFundo");
 
-            // Reinicia a animação caso o botão seja apertado novamente
+
+            /* =====================================
+               REINICIA A FRASE
+               ===================================== */
+
             frase.classList.remove("mostrar");
 
             void frase.offsetWidth;
 
-            // Executa a animação
             frase.classList.add("mostrar");
+
+
+            /* =====================================
+               REINICIA O GIF
+               ===================================== */
+
+            clearTimeout(tempoGif);
+
+            gif.classList.remove("mostrar");
+
+
+            /*
+               Força o navegador a recarregar o GIF.
+               Isso faz a animação começar novamente
+               do primeiro frame.
+            */
+
+            gif.src = "";
+
+            void gif.offsetWidth;
+
+            gif.src = "/static/flower.gif";
+
+
+            /* =====================================
+               FADE IN
+               ===================================== */
+
+            setTimeout(() => {
+                gif.classList.add("mostrar");
+            }, 50);
+
+
+            /* =====================================
+               FADE OUT
+               ===================================== */
+
+            /*
+               5000 = 5 segundos
+
+               Altere esse número para controlar
+               quanto tempo o GIF permanece visível.
+            */
+
+            tempoGif = setTimeout(() => {
+
+                gif.classList.remove("mostrar");
+
+            }, 5000);
+
         }
 
     </script>
