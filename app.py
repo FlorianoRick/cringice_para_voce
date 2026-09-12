@@ -17,7 +17,7 @@ HTML = """
            ========================================= */
 
         :root {
-            --cor-fundo: #6c5ce7;
+            --cor-fundo: #FA8072;
             --cor-caixa: #ffffff;
             --cor-botao: #dd0003;
             --cor-botao-hover: #00a383;
@@ -43,10 +43,14 @@ HTML = """
             justify-content: center;
             align-items: center;
 
-            background: var(--cor-fundo);
+            background-image: url("/static/garden.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
 
             font-family: Arial, sans-serif;
         }
+
 
 
         /* =========================================
@@ -160,16 +164,16 @@ HTML = """
 
     <div class="caixa">
 
-        <h1>Clica aqui em baixo</h1>
+        <h1>Clica AI</h1>
 
-        <p>.</p>
+        <p></p>
 
         <button onclick="mostrarFrase()">
             Aqui
         </button>
 
         <div id="frase">
-             Eu te amo Laura <3
+             Voce é perfeita<3
         </div>
 
     </div>
