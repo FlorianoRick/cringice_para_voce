@@ -175,7 +175,7 @@ HTML = """
 
 
         /* =========================================
-           TÍTULO E BOTÃO
+           TÍTULO + SUBTÍTULO + BOTÃO
            ========================================= */
 
         #inicio {
@@ -184,7 +184,8 @@ HTML = """
 
             /*
                 Controla o fade-in
-                e fade-out.
+                e fade-out de todos
+                os elementos iniciais.
             */
 
             transition: opacity 1s ease;
@@ -195,7 +196,8 @@ HTML = """
 
         /*
             Quando recebe "esconder",
-            título e botão desaparecem.
+            título, subtítulo e botão
+            desaparecem.
         */
 
         #inicio.esconder {
@@ -204,7 +206,8 @@ HTML = """
 
             /*
                 Impede que o botão
-                seja clicado invisível.
+                seja clicado enquanto
+                estiver invisível.
             */
 
             pointer-events: none;
@@ -222,6 +225,28 @@ HTML = """
             color: #FFFF00;
 
             margin-top: 0;
+
+            margin-bottom: 8px;
+
+        }
+
+
+
+        /* =========================================
+           SUBTÍTULO
+           ========================================= */
+
+        #subtitulo {
+
+            color: #000000;
+
+            font-size: 15px;
+
+            font-weight: normal;
+
+            margin-top: 0;
+
+            margin-bottom: 10px;
 
         }
 
@@ -400,7 +425,7 @@ HTML = """
 
 
             <!-- =================================
-                 TÍTULO E BOTÃO
+                 TÍTULO + SUBTÍTULO + BOTÃO
                  ================================= -->
 
             <div id="inicio">
@@ -409,6 +434,15 @@ HTML = """
                 <h1>
                     Clica Ai
                 </h1>
+
+
+                <!-- SUBTÍTULO -->
+
+                <div id="subtitulo">
+
+                    o quase homem que fez com seu estagiario
+
+                </div>
 
 
                 <button onclick="mostrarFrase()">
@@ -483,10 +517,15 @@ HTML = """
 
 
             /* =====================================
-               ESCONDE TÍTULO E BOTÃO
+               ESCONDE:
+               
+               - Título
+               - Subtítulo
+               - Botão
                ===================================== */
 
             inicio.classList.add("esconder");
+
 
 
             /* =====================================
@@ -607,7 +646,8 @@ HTML = """
 
 
                     /*
-                        Faz título e botão
+                        Faz título,
+                        subtítulo e botão
                         aparecerem novamente.
                     */
 
@@ -631,12 +671,10 @@ HTML = """
 """
 
 
-
 @app.route("/")
 def inicio():
 
     return render_template_string(HTML)
-
 
 
 if __name__ == "__main__":
