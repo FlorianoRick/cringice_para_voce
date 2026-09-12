@@ -164,7 +164,7 @@ HTML = """
 
     <div class="caixa">
 
-        <h1>Clica AI</h1>
+        <h1>Clica Ai</h1>
 
         <p></p>
 
