@@ -25,7 +25,7 @@ HTML = """
             /* CORES */
 
             --cor-fundo: #FA8072;
-            --cor-caixa: #E0FFFF;
+            --cor-caixa: #8DB6CD;
 
             --cor-botao-sim: #dd0003;
             --cor-botao-nao: #0066ff;
@@ -33,7 +33,7 @@ HTML = """
             --cor-botao-sim-hover: #b00002;
             --cor-botao-nao-hover: #004ecc;
 
-            --cor-titulo: #FFFF00;
+            --cor-titulo: #CD950C;
             --cor-subtitulo: #000000;
 
             --cor-frase: #ff0000;
@@ -44,7 +44,7 @@ HTML = """
                EDITE AQUI
                ===================================== */
 
-            --cor-texto-after: #BA55D3;
+            --cor-texto-after: #FFD700;
 
             /*
                 "cursive" = fonte cursiva.
@@ -93,7 +93,7 @@ HTML = """
 
             align-items: center;
 
-            background-image: url("/static/boat.jpg");
+            background-image: url("/static/boat.png");
 
             background-size: cover;
 
