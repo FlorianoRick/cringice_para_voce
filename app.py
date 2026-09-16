@@ -93,7 +93,7 @@ HTML = """
 
             align-items: center;
 
-            background-image: url("/static/boat.png");
+            background-image: url("/static/boat.jpg");
 
             background-size: cover;
 
