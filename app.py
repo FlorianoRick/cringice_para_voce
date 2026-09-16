@@ -25,7 +25,7 @@ HTML = """
             /* CORES */
 
             --cor-fundo: #FA8072;
-            --cor-caixa: #8DB6CD;
+            --cor-caixa: #E0FFFF;
 
             --cor-botao-sim: #dd0003;
             --cor-botao-nao: #0066ff;
@@ -33,7 +33,7 @@ HTML = """
             --cor-botao-sim-hover: #b00002;
             --cor-botao-nao-hover: #004ecc;
 
-            --cor-titulo: #CD950C;
+            --cor-titulo: #DA70D6;
             --cor-subtitulo: #000000;
 
             --cor-frase: #ff0000;
@@ -44,7 +44,7 @@ HTML = """
                EDITE AQUI
                ===================================== */
 
-            --cor-texto-after: #FFD700;
+            --cor-texto-after: #FFC125;
 
             /*
                 "cursive" = fonte cursiva.
