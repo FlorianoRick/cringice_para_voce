@@ -22,19 +22,55 @@ HTML = """
 
         :root {
 
+            /* CORES */
+
             --cor-fundo: #FA8072;
             --cor-caixa: #ffffff;
 
-            --cor-botao: #dd0003;
-            --cor-botao-hover: #00a383;
+            --cor-botao-sim: #dd0003;
+            --cor-botao-nao: #0066ff;
+
+            --cor-botao-sim-hover: #b00002;
+            --cor-botao-nao-hover: #004ecc;
+
+            --cor-titulo: #FFFF00;
+            --cor-subtitulo: #000000;
 
             --cor-frase: #ff0000;
+
+            /* =====================================
+               TEXTO DA MENSAGEM "SIM"
+
+               EDITE AQUI
+               ===================================== */
+
+            --cor-texto-after: #ffffff;
+
+            /*
+                "cursive" = fonte cursiva.
+                Você também pode trocar por:
+                "Comic Sans MS"
+                "Brush Script MT"
+                etc.
+            */
+
+            --fonte-texto-after: cursive;
+
+
+            /* =====================================
+               TAMANHOS
+               ===================================== */
 
             --tamanho-caixa: 400px;
 
             --arredondamento: 20px;
 
+            --tamanho-titulo: 32px;
+
+            --tamanho-subtitulo: 15px;
+
             --tamanho-frase: 32px;
+
             --tamanho-botao: 18px;
 
         }
@@ -54,9 +90,10 @@ HTML = """
             display: flex;
 
             justify-content: center;
+
             align-items: center;
 
-            background-image: url("/static/garden.jpg");
+            background-image: url("/static/boat.jpg");
 
             background-size: cover;
 
@@ -78,6 +115,8 @@ HTML = """
 
             width: var(--tamanho-caixa);
 
+            min-height: 317px;
+
             padding: 40px;
 
             background: var(--cor-caixa);
@@ -88,11 +127,6 @@ HTML = """
 
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 
-            /*
-                Permite que o GIF fique
-                dentro da caixa.
-            */
-
             position: relative;
 
             overflow: hidden;
@@ -102,7 +136,7 @@ HTML = """
 
 
         /* =========================================
-           GIF DE FUNDO
+           GIF
            ========================================= */
 
         #gifFundo {
@@ -115,42 +149,18 @@ HTML = """
             width: 100%;
             height: 100%;
 
-            /*
-                Faz o GIF preencher
-                toda a caixa.
-            */
-
             object-fit: cover;
 
-            /*
-                GIF fica atrás
-                dos textos.
-            */
-
             z-index: 0;
-
-            /*
-                Começa invisível.
-            */
 
             opacity: 0;
 
             pointer-events: none;
 
-            /*
-                Fade-in e fade-out
-                de 1 segundo.
-            */
-
             transition: opacity 1s ease;
 
         }
 
-
-
-        /* =========================================
-           GIF VISÍVEL
-           ========================================= */
 
         #gifFundo.mostrar {
 
@@ -161,7 +171,42 @@ HTML = """
 
 
         /* =========================================
-           CONTEÚDO DA CAIXA
+           IMAGEM AFTER
+           ========================================= */
+
+        #imagemAfter {
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            z-index: 0;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition: opacity 1s ease;
+
+        }
+
+
+        #imagemAfter.mostrar {
+
+            opacity: 1;
+
+        }
+
+
+
+        /* =========================================
+           CONTEÚDO
            ========================================= */
 
         .conteudo {
@@ -170,45 +215,38 @@ HTML = """
 
             z-index: 2;
 
+            min-height: 317px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            flex-direction: column;
+
         }
 
 
 
         /* =========================================
-           TÍTULO + SUBTÍTULO + BOTÃO
+           TELA INICIAL
            ========================================= */
 
         #inicio {
 
             opacity: 1;
 
-            /*
-                Controla o fade-in
-                e fade-out de todos
-                os elementos iniciais.
-            */
-
             transition: opacity 1s ease;
+
+            width: 100%;
 
         }
 
 
-
-        /*
-            Quando recebe "esconder",
-            título, subtítulo e botão
-            desaparecem.
-        */
-
         #inicio.esconder {
 
             opacity: 0;
-
-            /*
-                Impede que o botão
-                seja clicado enquanto
-                estiver invisível.
-            */
 
             pointer-events: none;
 
@@ -220,9 +258,11 @@ HTML = """
            TÍTULO
            ========================================= */
 
-        h1 {
+        #inicio h1 {
 
-            color: #00FF00;
+            color: var(--cor-titulo);
+
+            font-size: var(--tamanho-titulo);
 
             margin-top: 0;
 
@@ -238,35 +278,51 @@ HTML = """
 
         #subtitulo {
 
-            color: #000000;
+            color: var(--cor-subtitulo);
 
-            font-size: 15px;
+            font-size: var(--tamanho-subtitulo);
 
             font-weight: normal;
 
             margin-top: 0;
 
-            margin-bottom: 10px;
+            margin-bottom: 20px;
 
         }
 
 
 
         /* =========================================
-           BOTÃO
+           ÁREA DOS BOTÕES
+           ========================================= */
+
+        .botoes {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-top: 15px;
+
+        }
+
+
+
+        /* =========================================
+           BOTÕES
            ========================================= */
 
         button {
-
-            margin-top: 20px;
 
             padding: 14px 30px;
 
             border: none;
 
             border-radius: 10px;
-
-            background: var(--cor-botao);
 
             color: white;
 
@@ -280,9 +336,20 @@ HTML = """
 
 
 
-        button:hover {
+        /* =========================================
+           BOTÃO SIM
+           ========================================= */
 
-            background: var(--cor-botao-hover);
+        #botaoSim {
+
+            background: var(--cor-botao-sim);
+
+        }
+
+
+        #botaoSim:hover {
+
+            background: var(--cor-botao-sim-hover);
 
             transform: scale(1.05);
 
@@ -291,101 +358,217 @@ HTML = """
 
 
         /* =========================================
-           FRASE
+           BOTÃO NÃO
            ========================================= */
 
-        #frase {
+        #botaoNao {
 
-            margin-top: 30px;
+            background: var(--cor-botao-nao);
 
-            color: var(--cor-frase);
+        }
+
+
+        #botaoNao:hover {
+
+            background: var(--cor-botao-nao-hover);
+
+            transform: scale(1.05);
+
+        }
+
+
+
+        /* =========================================
+           MENSAGEM DEPOIS DA IMAGEM
+           ========================================= */
+
+        #mensagemAfter {
+
+            width: 90%;
+
+            position: relative;
+
+            z-index: 3;
+
+            color: var(--cor-texto-after);
+
+            font-family: var(--fonte-texto-after);
 
             font-size: var(--tamanho-frase);
 
-            font-weight: bold;
+            font-weight: normal;
+
+            text-align: center;
+
+            line-height: 1.3;
 
             opacity: 0;
 
-            transform: translateY(30px);
+            transform: translateY(20px);
+
+            transition: opacity 1s ease, transform 1s ease;
+
+        }
+
+
+        #mensagemAfter.mostrar {
+
+            opacity: 1;
+
+            transform: translateY(0);
 
         }
 
 
 
         /* =========================================
-           ANIMAÇÃO DE ENTRADA DA FRASE
+           TELA DO NÃO
            ========================================= */
 
-        #frase.mostrar {
+        #mensagemNao {
 
-            animation: revelar 1.5s ease forwards;
+            position: relative;
+
+            z-index: 3;
+
+            color: white;
+
+            font-family: "Times New Roman", Times, serif;
+
+            font-size: 42px;
+
+            font-weight: bold;
+
+            text-align: center;
+
+            opacity: 0;
+
+            transform: scale(0.8);
+
+            transition: opacity 1s ease, transform 1s ease;
 
         }
 
 
+        #mensagemNao.mostrar {
 
-        @keyframes revelar {
+            opacity: 1;
 
-            0% {
-
-                opacity: 0;
-
-                transform: translateY(30px) scale(0.8);
-
-            }
-
-
-            60% {
-
-                opacity: 1;
-
-                transform: translateY(-5px) scale(1.05);
-
-            }
-
-
-            100% {
-
-                opacity: 1;
-
-                transform: translateY(0) scale(1);
-
-            }
+            transform: scale(1);
 
         }
 
 
 
         /* =========================================
-           ANIMAÇÃO DE SAÍDA DA FRASE
+           BOTÃO VOLTAR
            ========================================= */
 
-        #frase.esconder {
+        .botaoVoltar {
 
-            animation: desaparecer 1s ease forwards;
+            position: relative;
+
+            z-index: 4;
+
+            margin-top: 25px;
+
+            background: rgba(0, 0, 0, 0.75);
+
+            color: white;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition: opacity 1s ease;
+
+        }
+
+
+        .botaoVoltar.mostrar {
+
+            opacity: 1;
+
+            pointer-events: auto;
+
+        }
+
+
+        .botaoVoltar:hover {
+
+            background: rgba(0, 0, 0, 0.9);
+
+            transform: scale(1.05);
 
         }
 
 
 
-        @keyframes desaparecer {
+        /* =========================================
+           CAMADA ESCURA PARA MELHOR LEITURA
+           ========================================= */
 
-            0% {
+        #camadaAfter {
 
-                opacity: 1;
+            position: absolute;
 
-                transform: translateY(0) scale(1);
+            top: 0;
+            left: 0;
 
-            }
+            width: 100%;
+            height: 100%;
+
+            background: rgba(0, 0, 0, 0.25);
+
+            z-index: 1;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition: opacity 1s ease;
+
+        }
 
 
-            100% {
+        #camadaAfter.mostrar {
 
-                opacity: 0;
+            opacity: 1;
 
-                transform: translateY(-20px) scale(0.9);
+        }
 
-            }
+
+
+        /* =========================================
+           CAMADA ESCURA DO NÃO
+           ========================================= */
+
+        #camadaNao {
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: rgba(0, 0, 0, 0.3);
+
+            z-index: 1;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition: opacity 1s ease;
+
+        }
+
+
+        #camadaNao.mostrar {
+
+            opacity: 1;
 
         }
 
@@ -398,22 +581,46 @@ HTML = """
 <body>
 
 
-    <!-- =========================================
-         CAIXA PRINCIPAL
-         ========================================= -->
-
     <div class="caixa">
 
 
         <!-- =====================================
-             GIF DE FUNDO
+             GIF PRINCIPAL
              ===================================== -->
 
         <img
             id="gifFundo"
-            src="/static/flower.gif"
+            src=""
             alt=""
         >
+
+
+
+        <!-- =====================================
+             IMAGEM AFTER
+             ===================================== -->
+
+        <img
+            id="imagemAfter"
+            src="/static/after.jpg"
+            alt=""
+        >
+
+
+
+        <!-- =====================================
+             CAMADA ESCURA AFTER
+             ===================================== -->
+
+        <div id="camadaAfter"></div>
+
+
+
+        <!-- =====================================
+             CAMADA ESCURA NÃO
+             ===================================== -->
+
+        <div id="camadaNao"></div>
 
 
 
@@ -425,18 +632,18 @@ HTML = """
 
 
             <!-- =================================
-                 TÍTULO + SUBTÍTULO + BOTÃO
+                 TELA INICIAL
                  ================================= -->
 
             <div id="inicio">
 
 
-                <h1>
-                    Clica Ai
+                <h1 id="titulo">
+
+                    voce ja sabe a pergunta
+
                 </h1>
 
-
-                <!-- SUBTÍTULO -->
 
                 <div id="subtitulo">
 
@@ -445,11 +652,28 @@ HTML = """
                 </div>
 
 
-                <button onclick="mostrarFrase()">
+                <div class="botoes">
 
-                    Aqui
 
-                </button>
+                    <button
+                        id="botaoSim"
+                        onclick="escolherSim()">
+
+                        Sim
+
+                    </button>
+
+
+                    <button
+                        id="botaoNao"
+                        onclick="escolherNao()">
+
+                        Não
+
+                    </button>
+
+
+                </div>
 
 
             </div>
@@ -457,18 +681,45 @@ HTML = """
 
 
             <!-- =================================
-                 FRASE
+                 TEXTO DO SIM
                  ================================= -->
 
-            <div id="frase">
+            <div id="mensagemAfter">
 
-                Voce é perfeita &lt;3
+                Sei que ainda sou um homenzinho e com erros,
+                mas vou tentar ser o seu homenzinho
 
             </div>
 
 
-        </div>
 
+            <!-- =================================
+                 TEXTO DO NÃO
+                 ================================= -->
+
+            <div id="mensagemNao">
+
+                DESCULPA
+
+            </div>
+
+
+
+            <!-- =================================
+                 BOTÃO VOLTAR
+                 ================================= -->
+
+            <button
+                id="botaoVoltar"
+                class="botaoVoltar"
+                onclick="voltarSelecao()">
+
+                Voltar
+
+            </button>
+
+
+        </div>
 
     </div>
 
@@ -478,120 +729,109 @@ HTML = """
 
 
         /* =========================================
-           TEMPORIZADOR DO GIF
+           VARIÁVEIS
            ========================================= */
 
-        let tempoGif;
+        let temporizadorSim;
+
+        let temporizadorNao;
+
+        let temporizadorTextoNao;
+
+        let temporizadorVoltarNao;
 
 
 
         /* =========================================
-           FUNÇÃO PRINCIPAL
+           FUNÇÃO PARA LIMPAR TUDO
            ========================================= */
 
-        function mostrarFrase() {
+        function limparTemporizadores() {
+
+            clearTimeout(temporizadorSim);
+
+            clearTimeout(temporizadorNao);
+
+            clearTimeout(temporizadorTextoNao);
+
+            clearTimeout(temporizadorVoltarNao);
+
+        }
 
 
-            /*
-                Seleciona os elementos
-                que serão controlados.
-            */
 
-            const frase =
-                document.getElementById("frase");
+        /* =========================================
+           ESCOLHA "SIM"
+           ========================================= */
 
-            const gif =
-                document.getElementById("gifFundo");
+        function escolherSim() {
+
+
+            limparTemporizadores();
+
 
             const inicio =
                 document.getElementById("inicio");
 
+            const gif =
+                document.getElementById("gifFundo");
+
+            const imagemAfter =
+                document.getElementById("imagemAfter");
+
+            const mensagemAfter =
+                document.getElementById("mensagemAfter");
+
+            const mensagemNao =
+                document.getElementById("mensagemNao");
+
+            const camadaAfter =
+                document.getElementById("camadaAfter");
+
+            const camadaNao =
+                document.getElementById("camadaNao");
+
+            const botaoVoltar =
+                document.getElementById("botaoVoltar");
+
 
 
             /* =====================================
-               CANCELA TEMPORIZADOR ANTERIOR
-               ===================================== */
-
-            clearTimeout(tempoGif);
-
-
-
-            /* =====================================
-               ESCONDE:
-               
-               - Título
-               - Subtítulo
-               - Botão
+               ESCONDE TELA INICIAL
                ===================================== */
 
             inicio.classList.add("esconder");
 
+            botaoVoltar.classList.remove("mostrar");
 
+            mensagemNao.classList.remove("mostrar");
 
-            /* =====================================
-               REINICIA A FRASE
-               ===================================== */
+            camadaNao.classList.remove("mostrar");
 
-            frase.classList.remove("mostrar");
+            mensagemAfter.classList.remove("mostrar");
 
-            frase.classList.remove("esconder");
+            imagemAfter.classList.remove("mostrar");
 
-
-            /*
-                Força o navegador a
-                reiniciar a animação.
-            */
-
-            void frase.offsetWidth;
-
-
-            /*
-                Faz a frase aparecer.
-            */
-
-            frase.classList.add("mostrar");
+            camadaAfter.classList.remove("mostrar");
 
 
 
             /* =====================================
-               REINICIA O GIF
+               REINICIA GIF SIM
                ===================================== */
-
-            /*
-                Primeiro remove o fade-in.
-            */
 
             gif.classList.remove("mostrar");
 
-
-            /*
-                Remove o GIF temporariamente.
-            */
-
             gif.src = "";
-
-
-            /*
-                Força o navegador
-                a processar a alteração.
-            */
 
             void gif.offsetWidth;
 
-
-            /*
-                Coloca o GIF novamente.
-
-                Isso faz a animação começar
-                novamente do primeiro frame.
-            */
-
-            gif.src = "/static/flower.gif";
+            gif.src = "/static/sim.gif";
 
 
 
             /* =====================================
-               FADE-IN DO GIF
+               MOSTRA GIF
                ===================================== */
 
             setTimeout(() => {
@@ -602,56 +842,58 @@ HTML = """
 
 
 
-            /* =====================================
-               TEMPO DO GIF
-               ===================================== */
-
             /*
-                5000 = 5 segundos.
-
-                Você pode alterar para:
-
-                3000 = 3 segundos
-                5000 = 5 segundos
-                8000 = 8 segundos
-                10000 = 10 segundos
+                Após 5 segundos o GIF
+                começa a desaparecer.
             */
 
-            tempoGif = setTimeout(() => {
+            temporizadorSim = setTimeout(() => {
 
-
-                /* ================================
-                   FADE-OUT DO GIF
-                   ================================ */
 
                 gif.classList.remove("mostrar");
 
 
 
-                /* ================================
-                   FADE-OUT DA FRASE
-                   ================================ */
-
-                frase.classList.remove("mostrar");
-
-                frase.classList.add("esconder");
-
-
-
-                /* ================================
-                   ESPERA O FADE-OUT TERMINAR
-                   ================================ */
+                /*
+                    Espera o fade-out
+                    terminar.
+                */
 
                 setTimeout(() => {
 
 
+                    gif.src = "";
+
+
+
+                    /* =========================
+                       MOSTRA AFTER.JPG
+                       ========================= */
+
+                    imagemAfter.classList.add("mostrar");
+
+                    camadaAfter.classList.add("mostrar");
+
+
+
+                    /* =========================
+                       MOSTRA TEXTO
+                       ========================= */
+
+                    mensagemAfter.classList.add("mostrar");
+
+
+
                     /*
-                        Faz título,
-                        subtítulo e botão
-                        aparecerem novamente.
+                        Botão aparece 5 segundos
+                        depois da mensagem.
                     */
 
-                    inicio.classList.remove("esconder");
+                    temporizadorSim = setTimeout(() => {
+
+                        botaoVoltar.classList.add("mostrar");
+
+                    }, 5000);
 
 
                 }, 1000);
@@ -659,6 +901,196 @@ HTML = """
 
             }, 5000);
 
+        }
+
+
+
+        /* =========================================
+           ESCOLHA "NÃO"
+           ========================================= */
+
+        function escolherNao() {
+
+
+            limparTemporizadores();
+
+
+            const inicio =
+                document.getElementById("inicio");
+
+            const gif =
+                document.getElementById("gifFundo");
+
+            const imagemAfter =
+                document.getElementById("imagemAfter");
+
+            const mensagemAfter =
+                document.getElementById("mensagemAfter");
+
+            const mensagemNao =
+                document.getElementById("mensagemNao");
+
+            const camadaAfter =
+                document.getElementById("camadaAfter");
+
+            const camadaNao =
+                document.getElementById("camadaNao");
+
+            const botaoVoltar =
+                document.getElementById("botaoVoltar");
+
+
+
+            /* =====================================
+               ESCONDE TELA INICIAL
+               ===================================== */
+
+            inicio.classList.add("esconder");
+
+            botaoVoltar.classList.remove("mostrar");
+
+            mensagemAfter.classList.remove("mostrar");
+
+            imagemAfter.classList.remove("mostrar");
+
+            camadaAfter.classList.remove("mostrar");
+
+
+
+            /* =====================================
+               REINICIA GIF NÃO
+               ===================================== */
+
+            gif.classList.remove("mostrar");
+
+            gif.src = "";
+
+            void gif.offsetWidth;
+
+            gif.src = "/static/não.gif";
+
+
+
+            /* =====================================
+               MOSTRA GIF
+               ===================================== */
+
+            setTimeout(() => {
+
+                gif.classList.add("mostrar");
+
+                camadaNao.classList.add("mostrar");
+
+            }, 50);
+
+
+
+            /* =====================================
+               APÓS 2 SEGUNDOS
+               MOSTRA "DESCULPA"
+               ===================================== */
+
+            temporizadorTextoNao = setTimeout(() => {
+
+                mensagemNao.classList.add("mostrar");
+
+
+
+                /*
+                    Mostra também o botão
+                    para poder voltar.
+                */
+
+                temporizadorVoltarNao = setTimeout(() => {
+
+                    botaoVoltar.classList.add("mostrar");
+
+                }, 3000);
+
+
+            }, 2000);
+
+        }
+
+
+
+        /* =========================================
+           VOLTAR PARA SELEÇÃO
+           ========================================= */
+
+        function voltarSelecao() {
+
+
+            limparTemporizadores();
+
+
+            const inicio =
+                document.getElementById("inicio");
+
+            const gif =
+                document.getElementById("gifFundo");
+
+            const imagemAfter =
+                document.getElementById("imagemAfter");
+
+            const mensagemAfter =
+                document.getElementById("mensagemAfter");
+
+            const mensagemNao =
+                document.getElementById("mensagemNao");
+
+            const camadaAfter =
+                document.getElementById("camadaAfter");
+
+            const camadaNao =
+                document.getElementById("camadaNao");
+
+            const botaoVoltar =
+                document.getElementById("botaoVoltar");
+
+
+
+            /* =====================================
+               ESCONDE TUDO
+               ===================================== */
+
+            botaoVoltar.classList.remove("mostrar");
+
+            mensagemAfter.classList.remove("mostrar");
+
+            mensagemNao.classList.remove("mostrar");
+
+            camadaAfter.classList.remove("mostrar");
+
+            camadaNao.classList.remove("mostrar");
+
+            imagemAfter.classList.remove("mostrar");
+
+            gif.classList.remove("mostrar");
+
+
+
+            /*
+                Espera os fades terminarem.
+            */
+
+            setTimeout(() => {
+
+
+                gif.src = "";
+
+                imagemAfter.src = "/static/after.jpg";
+
+
+
+                /*
+                    Volta à tela de seleção.
+                */
+
+                inicio.classList.remove("esconder");
+
+
+            }, 1000);
 
         }
 
