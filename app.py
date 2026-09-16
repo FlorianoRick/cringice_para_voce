@@ -25,7 +25,7 @@ HTML = """
             /* CORES */
 
             --cor-fundo: #FA8072;
-            --cor-caixa: #ffffff;
+            --cor-caixa: #E0FFFF;
 
             --cor-botao-sim: #dd0003;
             --cor-botao-nao: #0066ff;
@@ -640,14 +640,14 @@ HTML = """
 
                 <h1 id="titulo">
 
-                    voce ja sabe a pergunta
+                    Você ja sabe a pergunta
 
                 </h1>
 
 
                 <div id="subtitulo">
 
-                    o quase homem que fez com seu estagiario
+                    o homemzinho fez com seu estagiario
 
                 </div>
 
@@ -899,7 +899,7 @@ HTML = """
                 }, 1000);
 
 
-            }, 5000);
+            }, 2800);
 
         }
 
