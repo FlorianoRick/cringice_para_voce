@@ -33,7 +33,7 @@ HTML = """
             --cor-botao-sim-hover: #b00002;
             --cor-botao-nao-hover: #004ecc;
 
-            --cor-titulo: #DA70D6;
+            --cor-titulo: #00EEEE;
             --cor-subtitulo: #000000;
 
             --cor-frase: #ff0000;
@@ -44,7 +44,7 @@ HTML = """
                EDITE AQUI
                ===================================== */
 
-            --cor-texto-after: #8B0000;
+            --cor-texto-after: #0000CD;
 
             /*
                 "cursive" = fonte cursiva.
