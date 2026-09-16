@@ -44,7 +44,7 @@ HTML = """
                EDITE AQUI
                ===================================== */
 
-            --cor-texto-after: #ffffff;
+            --cor-texto-after: #BA55D3;
 
             /*
                 "cursive" = fonte cursiva.
