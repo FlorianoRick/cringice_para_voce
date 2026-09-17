@@ -136,39 +136,6 @@ HTML = """
 
 
         /* =========================================
-           GIF DA TELA INICIAL
-           ========================================= */
-
-        .gifInicial {
-
-           margin-top: 35px;
-
-           display: flex;
-
-           justify-content: center;
-
-           align-items: center;
-
-           width: 100%;
-
-        }
-
-
-        #gifInicial {
-
-           width: 260px;
-
-           height: 150px;
-
-           object-fit: contain;
-
-           border-radius: 10px;
-
-        }
-
-
-
-        /* =========================================
            GIF
            ========================================= */
 
@@ -714,17 +681,6 @@ HTML = """
 
 
                 </div>
-
-
-                <div class="gifInicial">
-
-                    <img
-                        id="gifInicial"
-                        src="/static/One Piece.gif"
-                        alt=""
-                    >
-
-                </div>
                 
 
             </div>
@@ -1100,22 +1056,7 @@ HTML = """
             const botaoVoltar =
                 document.getElementById("botaoVoltar");
 
-            const gifInicial =
-                document.getElementById("One Piece");
-             
-            setTimeout(() => {
-
-                gifInicial.src = "";
-
-                void gifInicial.offsetWidth;
-
-                gifInicial.src = "/static/One Piece.gif";
-
-                inicio.classList.remove("esconder");
-
-            }, 1000);    
-
-
+            
 
             /* =====================================
                ESCONDE TUDO
