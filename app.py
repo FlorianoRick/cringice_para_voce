@@ -116,6 +116,9 @@ HTML = """
 
         /* =========================================
            GIF PRINCIPAL
+
+           pointer-events: none é importante:
+           ele nunca bloqueia os botões.
            ========================================= */
 
         #gifFundo {
@@ -132,7 +135,7 @@ HTML = """
 
             object-fit: cover;
 
-            z-index: 0;
+            z-index: 1;
 
             opacity: 0;
 
@@ -168,7 +171,7 @@ HTML = """
 
             object-fit: cover;
 
-            z-index: 0;
+            z-index: 1;
 
             opacity: 0;
 
@@ -187,27 +190,26 @@ HTML = """
 
 
         /* =========================================
-           ÁREA DE CONTEÚDO
+           CONTEÚDO
            ========================================= */
 
         .conteudo {
 
             position: relative;
 
-            z-index: 2;
+            z-index: 10;
 
             width: 100%;
 
             height: 100%;
+
+            pointer-events: none;
 
         }
 
 
         /* =========================================
            TELA INICIAL
-
-           Posicionamento independente.
-           Nada aqui empurra outra tela.
            ========================================= */
 
         #inicio {
@@ -225,6 +227,10 @@ HTML = """
             transition: opacity 1s ease;
 
             text-align: center;
+
+            pointer-events: auto;
+
+            z-index: 20;
 
         }
 
@@ -267,15 +273,13 @@ HTML = """
 
             font-weight: normal;
 
-            margin: 0 20px 0 20px;
+            margin: 0 20px;
 
         }
 
 
         /* =========================================
            BOTÕES
-
-           Agora possuem posição própria.
            ========================================= */
 
         .botoes {
@@ -290,12 +294,12 @@ HTML = """
 
             margin-top: 22px;
 
+            position: relative;
+
+            z-index: 30;
+
         }
 
-
-        /* =========================================
-           BOTÕES
-           ========================================= */
 
         button {
 
@@ -312,6 +316,12 @@ HTML = """
             cursor: pointer;
 
             transition: 0.3s;
+
+            position: relative;
+
+            z-index: 31;
+
+            pointer-events: auto;
 
         }
 
@@ -357,16 +367,13 @@ HTML = """
 
 
         /* =========================================
-           JINSHI
+           GIF JINSHI
 
-           Imagem original:
-           787 x 1000
+           787 x 1000 original
 
-           Aqui fica reduzida para:
-           63 x 80
+           Reduzido para 63 x 80
 
-           E exatamente 10px abaixo
-           dos botões.
+           10px abaixo dos botões.
            ========================================= */
 
         #gifInicial {
@@ -385,13 +392,13 @@ HTML = """
 
             transition: opacity 1s ease;
 
+            pointer-events: none;
+
         }
 
 
         /* =========================================
            MENSAGEM AFTER
-
-           Fica independente da tela inicial.
            ========================================= */
 
         #mensagemAfter {
@@ -404,7 +411,7 @@ HTML = """
 
             width: 90%;
 
-            z-index: 3;
+            z-index: 20;
 
             color: var(--cor-texto-after);
 
@@ -429,6 +436,8 @@ HTML = """
                  1px  1px 0 #000;
 
             opacity: 0;
+
+            pointer-events: none;
 
             transform: translate(-50%, -50%) translateY(20px);
 
@@ -458,7 +467,7 @@ HTML = """
 
             left: 50%;
 
-            z-index: 3;
+            z-index: 20;
 
             color: white;
 
@@ -471,6 +480,8 @@ HTML = """
             text-align: center;
 
             opacity: 0;
+
+            pointer-events: none;
 
             transform: translate(-50%, -50%) scale(0.8);
 
@@ -490,9 +501,6 @@ HTML = """
 
         /* =========================================
            BOTÃO VOLTAR
-
-           Posição fixa dentro da caixa.
-           Assim ele nunca é empurrado.
            ========================================= */
 
         .botaoVoltar {
@@ -505,7 +513,7 @@ HTML = """
 
             transform: translateX(-50%);
 
-            z-index: 4;
+            z-index: 50;
 
             margin: 0;
 
@@ -558,7 +566,7 @@ HTML = """
 
             background: rgba(0, 0, 0, 0.25);
 
-            z-index: 1;
+            z-index: 2;
 
             opacity: 0;
 
@@ -594,7 +602,7 @@ HTML = """
 
             background: rgba(0, 0, 0, 0.3);
 
-            z-index: 1;
+            z-index: 2;
 
             opacity: 0;
 
@@ -623,9 +631,7 @@ HTML = """
     <div class="caixa">
 
 
-        <!-- =====================================
-             GIF PRINCIPAL
-             ===================================== -->
+        <!-- GIF PRINCIPAL -->
 
         <img
             id="gifFundo"
@@ -634,9 +640,7 @@ HTML = """
         >
 
 
-        <!-- =====================================
-             IMAGEM AFTER
-             ===================================== -->
+        <!-- IMAGEM AFTER -->
 
         <img
             id="imagemAfter"
@@ -645,23 +649,17 @@ HTML = """
         >
 
 
-        <!-- =====================================
-             CAMADA ESCURA AFTER
-             ===================================== -->
+        <!-- CAMADA ESCURA AFTER -->
 
         <div id="camadaAfter"></div>
 
 
-        <!-- =====================================
-             CAMADA ESCURA NÃO
-             ===================================== -->
+        <!-- CAMADA ESCURA NÃO -->
 
         <div id="camadaNao"></div>
 
 
-        <!-- =====================================
-             CONTEÚDO
-             ===================================== -->
+        <!-- CONTEÚDO -->
 
         <div class="conteudo">
 
@@ -693,6 +691,7 @@ HTML = """
 
 
                     <button
+                        type="button"
                         id="botaoSim"
                         onclick="escolherSim()">
 
@@ -702,6 +701,7 @@ HTML = """
 
 
                     <button
+                        type="button"
                         id="botaoNao"
                         onclick="escolherNao()">
 
@@ -713,9 +713,7 @@ HTML = """
                 </div>
 
 
-                <!-- =================================
-                     JINSHI
-                     ================================= -->
+                <!-- JINSHI -->
 
                 <img
                     id="gifInicial"
@@ -756,6 +754,7 @@ HTML = """
                  ================================= -->
 
             <button
+                type="button"
                 id="botaoVoltar"
                 class="botaoVoltar"
                 onclick="voltarSelecao()">
@@ -766,7 +765,6 @@ HTML = """
 
 
         </div>
-
 
     </div>
 
@@ -848,7 +846,7 @@ HTML = """
             gifInicial.style.opacity = "0";
 
 
-            /* LIMPA ESTADOS ANTERIORES */
+            /* LIMPA ESTADOS */
 
             botaoVoltar.classList.remove("mostrar");
 
@@ -890,7 +888,7 @@ HTML = """
                 gif.classList.remove("mostrar");
 
 
-                /* ESPERA FADE-OUT */
+                /* ESPERA O FADE-OUT */
 
                 setTimeout(() => {
 
@@ -904,12 +902,12 @@ HTML = """
                     camadaAfter.classList.add("mostrar");
 
 
-                    /* MOSTRA MENSAGEM */
+                    /* MOSTRA TEXTO */
 
                     mensagemAfter.classList.add("mostrar");
 
 
-                    /* MOSTRA VOLTAR */
+                    /* MOSTRA BOTÃO VOLTAR */
 
                     temporizadorSim = setTimeout(() => {
 
@@ -1078,7 +1076,7 @@ HTML = """
             gif.classList.remove("mostrar");
 
 
-            /* ESPERA FADE */
+            /* ESPERA O FADE */
 
             setTimeout(() => {
 
