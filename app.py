@@ -402,6 +402,12 @@ HTML = """
 
             line-height: 1.3;
 
+            text-shadow:
+                -1px -1px 0 #000,
+                 1px -1px 0 #000,
+                -1px  1px 0 #000,
+                 1px  1px 0 #000;
+
             opacity: 0;
 
             transform: translateY(20px);
@@ -641,6 +647,7 @@ HTML = """
                 <h1 id="titulo">
 
                     Você ja sabe a pergunta
+                         começa com N
 
                 </h1>
 
@@ -687,7 +694,8 @@ HTML = """
             <div id="mensagemAfter">
 
                 Sei que ainda sou um homenzinho e com erros,
-                mas vou tentar ser o seu homenzinho
+                mas vou tentar ser o seu homenzinho.
+                         (abre a caixinha agora)
 
             </div>
 
