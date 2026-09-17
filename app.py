@@ -23,35 +23,33 @@ HTML = """
 
 
         /* =========================================
-           CONFIGURAÇÕES FÁCEIS DE ALTERAR
+           CONFIGURAÇÕES
            ========================================= */
 
         :root {
 
-            /* CORES */
-
             --cor-fundo: #FA8072;
+
             --cor-caixa: #E0FFFF;
 
             --cor-botao-sim: #dd0003;
+
             --cor-botao-nao: #0066ff;
 
             --cor-botao-sim-hover: #b00002;
+
             --cor-botao-nao-hover: #004ecc;
 
             --cor-titulo: #00EEEE;
+
             --cor-subtitulo: #000000;
 
             --cor-frase: #ff0000;
-
-            /* TEXTO DA MENSAGEM "SIM" */
 
             --cor-texto-after: #FF4500;
 
             --fonte-texto-after: cursive;
 
-
-            /* TAMANHOS */
 
             --tamanho-caixa: 400px;
 
@@ -100,18 +98,27 @@ HTML = """
         /* =========================================
            CAIXA PRINCIPAL
 
-           IMPORTANTE:
-           A altura foi fixada para impedir que
-           qualquer conteúdo altere o tamanho.
+           O código original tinha:
+
+           min-height: 317px
+           padding: 40px
+
+           Portanto a altura externa era:
+
+           317 + 40 + 40 = 397px
+
+           Aqui mantemos exatamente essa dimensão.
            ========================================= */
 
         .caixa {
 
-            width: var(--tamanho-caixa);
+            width: calc(var(--tamanho-caixa) + 80px);
 
-            height: 317px;
+            height: 397px;
 
             padding: 40px;
+
+            box-sizing: border-box;
 
             background: var(--cor-caixa);
 
@@ -202,6 +209,9 @@ HTML = """
 
         /* =========================================
            CONTEÚDO
+
+           Ocupa exatamente a área interna
+           da caixa.
            ========================================= */
 
         .conteudo {
@@ -209,6 +219,8 @@ HTML = """
             position: relative;
 
             z-index: 2;
+
+            width: 100%;
 
             height: 317px;
 
@@ -229,13 +241,19 @@ HTML = """
 
         #inicio {
 
+            width: 100%;
+
             opacity: 1;
 
             transition: opacity 1s ease;
 
-            width: 100%;
+            display: flex;
 
-            position: relative;
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
 
         }
 
@@ -259,9 +277,9 @@ HTML = """
 
             font-size: var(--tamanho-titulo);
 
-            margin-top: 0;
+            margin: 0 0 8px 0;
 
-            margin-bottom: 8px;
+            line-height: 1.2;
 
         }
 
@@ -278,15 +296,13 @@ HTML = """
 
             font-weight: normal;
 
-            margin-top: 0;
-
-            margin-bottom: 20px;
+            margin: 0 0 20px 0;
 
         }
 
 
         /* =========================================
-           ÁREA DOS BOTÕES
+           BOTÕES
            ========================================= */
 
         .botoes {
@@ -299,14 +315,10 @@ HTML = """
 
             gap: 15px;
 
-            margin-top: 15px;
+            margin-top: 0;
 
         }
 
-
-        /* =========================================
-           BOTÕES
-           ========================================= */
 
         button {
 
@@ -368,10 +380,14 @@ HTML = """
 
 
         /* =========================================
-           GIF DA TELA INICIAL
+           GIF JINSHI
 
            Fica abaixo dos botões.
-           Não interfere no tamanho da caixa.
+
+           IMPORTANTE:
+           position: relative não altera o
+           tamanho da caixa porque a caixa
+           possui altura fixa.
            ========================================= */
 
         #gifInicial {
@@ -380,13 +396,13 @@ HTML = """
 
             width: 150px;
 
-            height: auto;
-
-            max-height: 80px;
+            height: 70px;
 
             object-fit: contain;
 
-            margin: 18px auto 0 auto;
+            margin-top: 18px;
+
+            opacity: 1;
 
             transition: opacity 1s ease;
 
@@ -394,7 +410,7 @@ HTML = """
 
 
         /* =========================================
-           MENSAGEM DEPOIS DA IMAGEM
+           MENSAGEM AFTER
            ========================================= */
 
         #mensagemAfter {
@@ -446,7 +462,7 @@ HTML = """
 
 
         /* =========================================
-           TELA DO NÃO
+           MENSAGEM NÃO
            ========================================= */
 
         #mensagemNao {
@@ -563,7 +579,7 @@ HTML = """
 
 
         /* =========================================
-           CAMADA ESCURA DO NÃO
+           CAMADA ESCURA NÃO
            ========================================= */
 
         #camadaNao {
@@ -609,9 +625,7 @@ HTML = """
     <div class="caixa">
 
 
-        <!-- =====================================
-             GIF PRINCIPAL
-             ===================================== -->
+        <!-- GIF PRINCIPAL -->
 
         <img
             id="gifFundo"
@@ -620,9 +634,7 @@ HTML = """
         >
 
 
-        <!-- =====================================
-             IMAGEM AFTER
-             ===================================== -->
+        <!-- IMAGEM AFTER -->
 
         <img
             id="imagemAfter"
@@ -631,23 +643,17 @@ HTML = """
         >
 
 
-        <!-- =====================================
-             CAMADA ESCURA AFTER
-             ===================================== -->
+        <!-- CAMADA ESCURA AFTER -->
 
         <div id="camadaAfter"></div>
 
 
-        <!-- =====================================
-             CAMADA ESCURA NÃO
-             ===================================== -->
+        <!-- CAMADA ESCURA NÃO -->
 
         <div id="camadaNao"></div>
 
 
-        <!-- =====================================
-             CONTEÚDO
-             ===================================== -->
+        <!-- CONTEÚDO -->
 
         <div class="conteudo">
 
@@ -699,9 +705,7 @@ HTML = """
                 </div>
 
 
-                <!-- =================================
-                     GIF DA TELA INICIAL
-                     ================================= -->
+                <!-- GIF DA TELA INICIAL -->
 
                 <img
                     id="gifInicial"
@@ -773,7 +777,7 @@ HTML = """
 
 
         /* =========================================
-           FUNÇÃO PARA LIMPAR TUDO
+           LIMPAR TEMPORIZADORES
            ========================================= */
 
         function limparTemporizadores() {
@@ -790,7 +794,7 @@ HTML = """
 
 
         /* =========================================
-           ESCOLHA "SIM"
+           ESCOLHER SIM
            ========================================= */
 
         function escolherSim() {
@@ -826,9 +830,7 @@ HTML = """
                 document.getElementById("botaoVoltar");
 
 
-            /* =====================================
-               ESCONDE TELA INICIAL
-               ===================================== */
+            /* ESCONDE TELA INICIAL */
 
             inicio.classList.add("esconder");
 
@@ -847,9 +849,7 @@ HTML = """
             camadaAfter.classList.remove("mostrar");
 
 
-            /* =====================================
-               REINICIA GIF SIM
-               ===================================== */
+            /* REINICIA GIF SIM */
 
             gif.classList.remove("mostrar");
 
@@ -860,9 +860,7 @@ HTML = """
             gif.src = "/static/sim.gif";
 
 
-            /* =====================================
-               MOSTRA GIF
-               ===================================== */
+            /* MOSTRA GIF */
 
             setTimeout(() => {
 
@@ -871,44 +869,33 @@ HTML = """
             }, 50);
 
 
-            /* =====================================
-               APÓS 2.8 SEGUNDOS
-               COMEÇA O FADE-OUT
-               ===================================== */
+            /* APÓS 2.8 SEGUNDOS */
 
             temporizadorSim = setTimeout(() => {
 
                 gif.classList.remove("mostrar");
 
 
-                /* =================================
-                   ESPERA O FADE-OUT
-                   ================================= */
+                /* ESPERA O FADE-OUT */
 
                 setTimeout(() => {
 
                     gif.src = "";
 
 
-                    /* =============================
-                       MOSTRA AFTER.JPG
-                       ============================= */
+                    /* MOSTRA AFTER */
 
                     imagemAfter.classList.add("mostrar");
 
                     camadaAfter.classList.add("mostrar");
 
 
-                    /* =============================
-                       MOSTRA TEXTO
-                       ============================= */
+                    /* MOSTRA TEXTO */
 
                     mensagemAfter.classList.add("mostrar");
 
 
-                    /* =============================
-                       MOSTRA BOTÃO VOLTAR
-                       ============================= */
+                    /* MOSTRA BOTÃO VOLTAR */
 
                     temporizadorSim = setTimeout(() => {
 
@@ -926,7 +913,7 @@ HTML = """
 
 
         /* =========================================
-           ESCOLHA "NÃO"
+           ESCOLHER NÃO
            ========================================= */
 
         function escolherNao() {
@@ -962,9 +949,7 @@ HTML = """
                 document.getElementById("botaoVoltar");
 
 
-            /* =====================================
-               ESCONDE TELA INICIAL
-               ===================================== */
+            /* ESCONDE TELA INICIAL */
 
             inicio.classList.add("esconder");
 
@@ -979,9 +964,7 @@ HTML = """
             camadaAfter.classList.remove("mostrar");
 
 
-            /* =====================================
-               REINICIA GIF NÃO
-               ===================================== */
+            /* REINICIA GIF NÃO */
 
             gif.classList.remove("mostrar");
 
@@ -992,9 +975,7 @@ HTML = """
             gif.src = "/static/não.gif";
 
 
-            /* =====================================
-               MOSTRA GIF
-               ===================================== */
+            /* MOSTRA GIF */
 
             setTimeout(() => {
 
@@ -1005,19 +986,14 @@ HTML = """
             }, 50);
 
 
-            /* =====================================
-               APÓS 2 SEGUNDOS
-               MOSTRA "DESCULPA"
-               ===================================== */
+            /* MOSTRA DESCULPA */
 
             temporizadorTextoNao = setTimeout(() => {
 
                 mensagemNao.classList.add("mostrar");
 
 
-                /* =============================
-                   MOSTRA BOTÃO VOLTAR
-                   ============================= */
+                /* MOSTRA BOTÃO VOLTAR */
 
                 temporizadorVoltarNao = setTimeout(() => {
 
@@ -1032,7 +1008,7 @@ HTML = """
 
 
         /* =========================================
-           VOLTAR PARA SELEÇÃO
+           VOLTAR
            ========================================= */
 
         function voltarSelecao() {
@@ -1068,9 +1044,7 @@ HTML = """
                 document.getElementById("botaoVoltar");
 
 
-            /* =====================================
-               ESCONDE TUDO
-               ===================================== */
+            /* ESCONDE TUDO */
 
             botaoVoltar.classList.remove("mostrar");
 
@@ -1087,9 +1061,7 @@ HTML = """
             gif.classList.remove("mostrar");
 
 
-            /* =====================================
-               ESPERA OS FADES TERMINAREM
-               ===================================== */
+            /* ESPERA O FADE */
 
             setTimeout(() => {
 
@@ -1097,20 +1069,18 @@ HTML = """
 
                 imagemAfter.src = "/static/after.jpg";
 
-                /* =============================
-                   RESTAURA GIF INICIAL
-                   ============================= */
+
+                /* RESTAURA GIF INICIAL */
 
                 gifInicial.src = "/static/jinshi.gif";
 
                 gifInicial.style.opacity = "1";
 
 
-                /* =============================
-                   VOLTA À TELA DE SELEÇÃO
-                   ============================= */
+                /* MOSTRA NOVAMENTE A TELA INICIAL */
 
                 inicio.classList.remove("esconder");
+
 
             }, 1000);
 
